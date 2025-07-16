@@ -3,29 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Products | HighSnacks420</title>
+  <title>HighSnacks420 - Products</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Dropdown style override for better visibility */
+    /* Override some styles for the select */
     #currency-select {
-      margin: 1em 0;
+      margin: 1em 0 2em 0;
       padding: 0.5em;
       background: #222;
       color: #d0f0c0;
       border: 1px solid #81f281;
       font-size: 1em;
       border-radius: 4px;
-    }
-    .price {
-      font-weight: bold;
-      color: #f0d38a;
-    }
-    ul.products {
-      list-style: none;
-      padding: 0;
-    }
-    ul.products li {
-      margin-bottom: 1em;
     }
   </style>
 </head>
@@ -84,7 +73,6 @@
   </footer>
 
   <script>
-    // Fixed example exchange rates relative to USD
     const exchangeRates = {
       USD: 1,
       EUR: 0.91,
@@ -111,7 +99,7 @@
       const rate = exchangeRates[currency];
       const symbol = currencySymbols[currency];
 
-      prices.forEach((el) => {
+      prices.forEach(el => {
         const usdPrice = parseFloat(el.dataset.usd);
         const converted = (usdPrice * rate).toFixed(2);
         el.textContent = `${symbol}${converted}`;
@@ -119,8 +107,6 @@
     }
 
     select.addEventListener("change", updatePrices);
-
-    // Initialize prices on page load
     updatePrices();
   </script>
 </body>
