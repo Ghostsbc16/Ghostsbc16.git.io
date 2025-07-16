@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products | HighSnacks420</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Dropdown style override for better visibility */
+    #currency-select {
+      margin: 1em 0;
+      padding: 0.5em;
+      background: #222;
+      color: #d0f0c0;
+      border: 1px solid #81f281;
+      font-size: 1em;
+      border-radius: 4px;
+    }
+    .price {
+      font-weight: bold;
+      color: #f0d38a;
+    }
+    ul.products {
+      list-style: none;
+      padding: 0;
+    }
+    ul.products li {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HighSnacks420</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="recipes.html">Recipes</a>
+      <a href="blog.html">Blog</a>
+      <a href="products.html">Products</a>
+    </nav>
+  </header>
+  <main>
+    <h2>🌿 Food & Weed Products</h2>
+
+    <label for="currency-select">Choose your currency:</label>
+    <select id="currency-select">
+      <option value="USD" selected>USD $</option>
+      <option value="EUR">EUR €</option>
+      <option value="GBP">GBP £</option>
+      <option value="CAD">CAD $</option>
+      <option value="AUD">AUD $</option>
+      <option value="JPY">JPY ¥</option>
+    </select>
+
+    <ul class="products">
+      <li>
+        <strong>OG Kush (1g)</strong><br />
+        Price: <span class="price" data-usd="30">Loading...</span>
+      </li>
+      <li>
+        <strong>Weed Brownies (1 piece)</strong><br />
+        Price: <span class="price" data-usd="8">Loading...</span>
+      </li>
+      <li>
+        <strong>High Nachos</strong><br />
+        Price: <span class="price" data-usd="12">Loading...</span>
+      </li>
+      <li>
+        <strong>CBD Gummies (pack of 5)</strong><br />
+        Price: <span class="price" data-usd="15">Loading...</span>
+      </li>
+      <li>
+        <strong>Indica Vape Cartridge</strong><br />
+        Price: <span class="price" data-usd="45">Loading...</span>
+      </li>
+      <li>
+        <strong>Infused Popcorn</strong><br />
+        Price: <span class="price" data-usd="10">Loading...</span>
+      </li>
+    </ul>
+  </main>
+  <footer>
+    <p>© 2025 HighSnacks420. Stay lifted.</p>
+  </footer>
+
+  <script>
+    // Fixed example exchange rates relative to USD
+    const exchangeRates = {
+      USD: 1,
+      EUR: 0.91,
+      GBP: 0.79,
+      CAD: 1.33,
+      AUD: 1.49,
+      JPY: 139.32
+    };
+
+    const currencySymbols = {
+      USD: "$",
+      EUR: "€",
+      GBP: "£",
+      CAD: "CA$",
+      AUD: "AU$",
+      JPY: "¥"
+    };
+
+    const prices = document.querySelectorAll(".price");
+    const select = document.getElementById("currency-select");
+
+    function updatePrices() {
+      const currency = select.value;
+      const rate = exchangeRates[currency];
+      const symbol = currencySymbols[currency];
+
+      prices.forEach((el) => {
+        const usdPrice = parseFloat(el.dataset.usd);
+        const converted = (usdPrice * rate).toFixed(2);
+        el.textContent = `${symbol}${converted}`;
+      });
+    }
+
+    select.addEventListener("change", updatePrices);
+
+    // Initialize prices on page load
+    updatePrices();
+  </script>
+</body>
+</html>
